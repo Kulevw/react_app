@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-
 import {MessengeForm} from "./MessengeForm";
 import {MessengesList} from "./MessengesList";
+import {Box, Container} from "@material-ui/core";
+import './messages.styl';
+
 
 
 export class Messenger extends Component {
@@ -19,10 +21,12 @@ export class Messenger extends Component {
     render() {
         const {message} = this.state;
         return (
-            <div>
-                <MessengeForm onSend={this.handleMessageSend}/>
-                <MessengesList message={message}/>
-            </div>
+            <Container>
+                <Box display="flex" className={'messenger'}>
+                     <MessengeForm onSend={this.handleMessageSend}/>
+                     <MessengesList message={message}/>
+                </Box>
+            </Container>
         );
     }
 }

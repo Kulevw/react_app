@@ -4,10 +4,25 @@ import {Messege} from "./Messege";
 export class MessengesList extends Component {
 
     state = {
-        messages: [],
+        messages: [
+            {
+                text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                author: 'User',
+                created_at: Date()
+            },
+            {
+                text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                author: 'User',
+                created_at: Date()
+            },
+            {
+                text: "Lorem ipsum dolor sit amet.",
+                author: 'User',
+                created_at: Date()
+            }
+        ],
         message: {}
     };
-
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
         let message = this.props.message;
@@ -27,7 +42,8 @@ export class MessengesList extends Component {
         this.setState({
             messages: this.state.messages.concat([{
                 text: `Привет ${author}`,
-                author: 'Bot'
+                author: 'Bot',
+                created_at: Date()
             }])
         });
     };
@@ -35,11 +51,11 @@ export class MessengesList extends Component {
 
     render() {
         return (
-            <ul>
+            <div className={'message__list'}>
                 {this.state.messages.map((message, idx) =>
                     <Messege key={idx} message={message}/>
                 )}
-            </ul>
+            </div>
         );
     }
 }

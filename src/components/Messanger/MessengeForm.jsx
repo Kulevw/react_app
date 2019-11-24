@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import PropType from 'prop-types';
+import {Box, Button, Card, FormControl, TextField} from '@material-ui/core';
+
 
 export class MessengeForm extends Component {
     state = {
         author: '',
-        text: ''
+        text: '',
+        created_at: Date()
     };
 
     static propTypes = {
@@ -22,7 +25,7 @@ export class MessengeForm extends Component {
 
         this.setState({
             text: '',
-            author: ''
+            author: '',
         });
     };
 
@@ -39,15 +42,37 @@ export class MessengeForm extends Component {
         const {author, text} = this.state;
 
         return (
-            <div>
-                <div>
-                    <input placeholder="author" name="author" onChange={this.handleInputChange} type="text" value={author}/>
+
+            <FormControl className={'message__form'}> <Card className={'message__form-card'}>
+                <div className={'message__form-field'}>
+                    <TextField
+                        placeholder="author"
+                        name="author"
+                        onChange={this.handleInputChange}
+                        type="text"
+                        className="mb-2"
+                        id="outlined-basic"
+                        variant="outlined"
+                        margin={'dense'}
+                        value={author}/>
+
                 </div>
-                <div>
-                    <textarea placeholder="text" name="text" onChange={this.handleInputChange} value={text}/>
+                <div className={'message__form-field'}>
+                    <TextField
+                        placeholder="text"
+                        name="text"
+                        multiline
+                        onChange={this.handleInputChange}
+                        id="outlined-basic"
+                        variant="outlined"
+                        rows={5}
+                        margin={'dense'}
+                        value={text}/>
                 </div>
-                <button onClick={this.handleMessageSend}>Send</button>
-            </div>
+                <Box display="flex" justifyContent="flex-end"> <Button onClick={this.handleMessageSend}
+                                                                       id="outlined-basic"
+                                                                       variant="outlined"
+                >send</Button> </Box> </Card> </FormControl>
         );
     }
 }
